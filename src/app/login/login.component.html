@@ -1,0 +1,9 @@
+<div>
+  <form [formGroup]="form" (ngSubmit)="startGame()">
+    <label for="">Player 1</label>
+    <input formControlName="player1" type="text" />
+    <label for="">Player 2</label>
+    <input formControlName="player2" type="text" />
+    <button type="submit">Start</button>
+  </form>
+</div>
