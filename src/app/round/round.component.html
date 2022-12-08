@@ -2,7 +2,7 @@
   <div class="col-12 col-lg-6">
     <div>
       <h1>Round {{ roundsCounter }}</h1>
-      <h2>{{ playerTurn.name }}</h2>
+      <h2>{{ playerTurn.name | uppercase }}</h2>
       <form [formGroup]="form" (ngSubmit)="submitTurn()">
         <select formControlName="move" class="form-select" aria-label="Default select example">
           <option selected></option>

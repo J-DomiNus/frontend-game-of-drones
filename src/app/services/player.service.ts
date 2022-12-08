@@ -16,4 +16,7 @@ export class PlayerService {
   savePlayer(name: string, player: any): Observable<any> {
     return this.http.post(this.myAppUrl + this.myApiUrl + name, player);
   }
+  updatePlayer(id: number, player: any): Observable<any> {
+    return this.http.put(this.myAppUrl + this.myApiUrl + id, player);
+  }
 }

@@ -2,7 +2,6 @@ import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { PlayerService } from "../services/player.service";
 import { Router } from "@angular/router";
-import { Observable } from "rxjs";
 
 @Component({
   selector: "app-login",
@@ -11,6 +10,7 @@ import { Observable } from "rxjs";
 })
 export class LoginComponent {
   form: FormGroup;
+  playersSaved: number = 0;
 
   constructor(
     private fb: FormBuilder,
@@ -25,6 +25,14 @@ export class LoginComponent {
   save_localstorage(player: any, n: number) {
     const key = "player" + (n + 1);
     localStorage.setItem(key, JSON.stringify(player));
+    this.playersSaved += 1;
+    this.navigate_Rounds();
+  }
+  navigate_Rounds() {
+    if (this.playersSaved === 2) {
+      this.router.navigateByUrl("/rounds");
+    }
+    return;
   }
   startGame() {
     const players: any[] = [];
@@ -35,7 +43,7 @@ export class LoginComponent {
       name: this.form.get("player2")?.value.toLowerCase(),
     };
     players.push(player1, player2);
-    console.log(players[0]);
+
     for (let i = 0; i <= 1; i++) {
       this._playerService.savePlayer(players[i].name, players[i]).subscribe(
         (data) => {
@@ -50,7 +58,5 @@ export class LoginComponent {
         },
       );
     }
-
-    this.router.navigateByUrl("/rounds");
   }
 }

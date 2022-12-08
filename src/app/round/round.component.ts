@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { PlayerService } from "../services/player.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-round",
@@ -26,14 +28,22 @@ export class RoundComponent {
   };
   rounds: any = [];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private _playerService: PlayerService,
+    private router: Router,
+  ) {
     this.get_localstorage();
     this.set_Turn(this.player1);
     this.form = this.fb.group({
       move: ["", [Validators.required]],
     });
   }
-
+  save_localstorage(winner: any) {
+    localStorage.setItem("player1", JSON.stringify(this.player1));
+    localStorage.setItem("player2", JSON.stringify(this.player2));
+    localStorage.setItem("winner", JSON.stringify(winner));
+  }
   get_localstorage() {
     this.player1 = JSON.parse(localStorage.getItem("player1")!);
     this.player2 = JSON.parse(localStorage.getItem("player2")!);
@@ -58,20 +68,34 @@ export class RoundComponent {
   }
   getRoundWinner() {
     let winner: string;
-    if (this.player1.move === this.player2.move) {
-      return (this.message = `That's a Draw!`);
-    } else if (this.player1.move === this.nemesis[this.player2.move]) {
+    if (this.player1.move === this.nemesis[this.player2.move]) {
       this.score.player1 += 1;
       winner = this.player1.name;
-    } else {
+    } else if (this.player2.move === this.nemesis[this.player1.move]) {
       this.score.player2 += 1;
       winner = this.player2.name;
+    } else {
+      return (this.message = `That's a Draw!`);
     }
     this.message = ``;
     this.rounds.push({ round: this.roundsCounter, winner: winner });
-    if (this.score.player1 === 3 || this.score.player2 === 3) {
-      console.log("We have a winner!");
+    if (this.score.player1 === 3) {
+      this.setGameWinner(this.player1);
+    } else if (this.score.player2 === 3) {
+      this.setGameWinner(this.player2);
     }
     return (this.roundsCounter += 1);
+  }
+  setGameWinner(player: any) {
+    player.wins += 1;
+    this._playerService.updatePlayer(player.id, player).subscribe(
+      (data) => {
+        this.save_localstorage(data);
+        this.router.navigateByUrl("/winner");
+      },
+      (error) => {
+        console.log(error);
+      },
+    );
   }
 }

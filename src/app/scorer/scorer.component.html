@@ -8,9 +8,12 @@
     <tbody>
       <tr *ngFor="let round of rounds">
         <td>{{ round.round }}</td>
-        <td>{{ round.winner }}</td>
+        <td>{{ round.winner | uppercase }}</td>
       </tr>
     </tbody>
   </table>
-  <h2>{{ score.player1 }} {{ this.player1.name }} : {{ this.player2.name }} {{ score.player2 }}</h2>
+  <h2>
+    {{ score.player1 }} {{ this.player1.name | uppercase }} : {{ this.player2.name | uppercase }}
+    {{ score.player2 }}
+  </h2>
 </div>
