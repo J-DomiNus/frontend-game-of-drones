@@ -1,1 +1,11 @@
-<p>round works!</p>
+<div>
+  <h1>Round {{ roundsCounter }}</h1>
+  <h2>{{ playerTurn.name }}</h2>
+  <form [formGroup]="form" (ngSubmit)="submitTurn()">
+    <select formControlName="move" class="form-select" aria-label="Default select example">
+      <option selected>Select your move!</option>
+      <option *ngFor="let move of moves" [ngValue]="move">{{ move }}</option>
+    </select>
+    <button type="submit">Ok</button>
+  </form>
+</div>
