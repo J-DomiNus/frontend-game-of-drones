@@ -10,15 +10,21 @@ export class RoundComponent {
   player1: any;
   player2: any;
   playerTurn: any;
-  turnId = 1;
+  turnId: number = 1;
   form: FormGroup;
-  roundsCounter = 1;
-  moves = ["Rock", "Sissors", "Paper"];
+  roundsCounter: number = 1;
+  moves: any = ["Rock", "Sissors", "Paper"];
   nemesis: any = {
     Rock: "Paper",
     Sissors: "Rock",
     Paper: "Sissors",
   };
+  message: string = "";
+  score: any = {
+    player1: 0,
+    player2: 0,
+  };
+  rounds: any = [];
 
   constructor(private fb: FormBuilder) {
     this.get_localstorage();
@@ -31,9 +37,6 @@ export class RoundComponent {
   get_localstorage() {
     this.player1 = JSON.parse(localStorage.getItem("player1")!);
     this.player2 = JSON.parse(localStorage.getItem("player2")!);
-    // console.log("hola que tal?");
-    // console.log(this.player1);
-    // console.log(this.player2);
   }
   set_Turn(player: any) {
     this.playerTurn = player;
@@ -54,16 +57,21 @@ export class RoundComponent {
     }
   }
   getRoundWinner() {
+    let winner: string;
     if (this.player1.move === this.player2.move) {
-      // restart round 1
-      console.log("Draw");
+      return (this.message = `That's a Draw!`);
     } else if (this.player1.move === this.nemesis[this.player2.move]) {
-      console.log("Player 1 Wins");
+      this.score.player1 += 1;
+      winner = this.player1.name;
     } else {
-      console.log("Player 2 Wins");
-      //player2
+      this.score.player2 += 1;
+      winner = this.player2.name;
     }
-    console.log(this.player1);
-    console.log(this.player2);
+    this.message = ``;
+    this.rounds.push({ round: this.roundsCounter, winner: winner });
+    if (this.score.player1 === 3 || this.score.player2 === 3) {
+      console.log("We have a winner!");
+    }
+    return (this.roundsCounter += 1);
   }
 }
