@@ -2,6 +2,10 @@
   <div class="col12 col-lg-6">
     <h1>In you face!!</h1>
     <h1>{{ winner.name | uppercase }} is the Boss!</h1>
+    <div>
+      <button [routerLink]="['/rounds']">Rematch</button>
+      <button [routerLink]="['/']">Restart</button>
+    </div>
   </div>
   <div class="col12 col-lg-6">
     <table>
