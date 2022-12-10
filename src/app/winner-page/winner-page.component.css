@@ -5,6 +5,12 @@
   text-align: center;
 }
 
+@media (max-width: 750px) {
+  .winner-card {
+    width: 80%;
+  }
+}
+
 .clasification-card {
   padding: 2rem 0;
   margin-top: 10%;
