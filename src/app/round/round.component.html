@@ -1,15 +1,15 @@
 <div class="row">
-  <div class="col-12 col-lg-6">
-    <div>
-      <h1>Round {{ roundsCounter }}</h1>
-      <h2>{{ playerTurn.name | uppercase }}</h2>
+  <div class="col-12 col-lg-6 d-flex justify-content-center">
+    <div class="round-card">
+      <h1 class="title">Round {{ roundsCounter }}</h1>
+      <h2 class="subtitle">{{ playerTurn.name | uppercase }}</h2>
       <form [formGroup]="form" (ngSubmit)="submitTurn()">
-        <select formControlName="move" class="form-select" aria-label="Default select example">
+        <select formControlName="move" class="w-75" aria-label="Default select example">
           <option selected></option>
           <option *ngFor="let move of moves" [ngValue]="move">{{ move }}</option>
         </select>
         <p>{{ message }}</p>
-        <button [disabled]="this.form.invalid" type="submit">Ok</button>
+        <button class="button" [disabled]="this.form.invalid" type="submit">Ok</button>
       </form>
     </div>
   </div>

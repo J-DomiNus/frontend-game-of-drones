@@ -1,0 +1,21 @@
+.scorer-card {
+  padding: 2rem 0;
+  margin-top: 10%;
+  text-align: center;
+  width: 80%;
+}
+
+.title {
+  font-size: 4rem;
+  padding: 2rem;
+}
+
+.subtitle {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+.button {
+  margin-top: 2rem;
+  width: 15rem;
+}

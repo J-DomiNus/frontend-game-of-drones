@@ -1,0 +1,21 @@
+.login-card {
+  width: 50%;
+  height: 20rem;
+  padding: 2rem 0;
+  margin-top: 5%;
+  text-align: center;
+}
+
+.title {
+  font-size: 4rem;
+  padding: 2rem;
+}
+
+.input {
+  margin-left: 0.5rem;
+}
+
+.button {
+  margin-top: 2rem;
+  width: 15rem;
+}

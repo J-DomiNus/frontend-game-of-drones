@@ -1,24 +1,29 @@
 <div class="row">
-  <div class="col12 col-lg-6">
-    <h1>In you face!!</h1>
-    <h1>{{ winner.name | uppercase }} is the Boss!</h1>
-    <div>
-      <button [routerLink]="['/rounds']">Rematch</button>
-      <button [routerLink]="['/']">Restart</button>
+  <div class="col12 col-lg-6 d-flex justify-content-center">
+    <div class="winner-card">
+      <h1 class="title">In your face!!</h1>
+      <h1 class="title">{{ winner.name | uppercase }} is the Boss!</h1>
+      <div>
+        <button class="button" [routerLink]="['/rounds']">Rematch</button>
+        <button class="button" [routerLink]="['/']">Restart</button>
+      </div>
     </div>
   </div>
-  <div class="col12 col-lg-6">
-    <table>
-      <thead>
-        <th>Player</th>
-        <th>Wins</th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let player of players">
-          <td>{{ player.name }}</td>
-          <td>{{ player.wins }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="col12 col-lg-6 d-flex justify-content-center">
+    <div class="clasification-card">
+      <h1 class="title">Records</h1>
+      <table class="table">
+        <thead>
+          <th class="w-50">Player</th>
+          <th class="w-50">Wins</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let player of players">
+            <td>{{ player.name }}</td>
+            <td>{{ player.wins }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

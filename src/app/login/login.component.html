@@ -1,10 +1,17 @@
-<div>
-  <h1>Enter Player's Names</h1>
-  <form [formGroup]="form" (ngSubmit)="startGame()">
-    <label for="">Player 1</label>
-    <input formControlName="player1" type="text" />
-    <label for="">Player 2</label>
-    <input formControlName="player2" type="text" />
-    <button type="submit">Start</button>
-  </form>
+<div class="d-flex justify-content-center">
+  <div class="login-card">
+    <h1 class="title">Enter Player's Names</h1>
+    <form [formGroup]="form" (ngSubmit)="startGame()">
+      <div class="my-3">
+        <label for="">Player 1</label>
+        <input class="input" formControlName="player1" type="text" />
+      </div>
+      <div class="my-3">
+        <label for="">Player 2</label>
+        <input class="input" formControlName="player2" type="text" />
+      </div>
+
+      <button class="button" type="submit">Start</button>
+    </form>
+  </div>
 </div>

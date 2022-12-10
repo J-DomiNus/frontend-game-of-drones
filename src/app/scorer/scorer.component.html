@@ -1,19 +1,21 @@
-<div class="row">
-  <h1>Score</h1>
-  <table>
-    <thead>
-      <th>Round</th>
-      <th>Winner</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let round of rounds">
-        <td>{{ round.round }}</td>
-        <td>{{ round.winner | uppercase }}</td>
-      </tr>
-    </tbody>
-  </table>
-  <h2>
-    {{ score.player1 }} {{ this.player1.name | uppercase }} : {{ this.player2.name | uppercase }}
-    {{ score.player2 }}
-  </h2>
+<div class="d-flex justify-content-center">
+  <div class="scorer-card">
+    <h1 class="title">Score</h1>
+    <table class="table">
+      <thead>
+        <th class="w-50">Round</th>
+        <th class="w-50">Winner</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let round of rounds">
+          <td>{{ round.round }}</td>
+          <td>{{ round.winner | uppercase }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 class="subtitle">
+      {{ score.player1 }} {{ this.player1.name | uppercase }} : {{ this.player2.name | uppercase }}
+      {{ score.player2 }}
+    </h2>
+  </div>
 </div>
